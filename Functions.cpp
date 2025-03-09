@@ -1,106 +1,103 @@
 #include <iostream>
-#include <string>
-#include "functions.h"
+#include <cmath> // for comparing doubles
 using namespace std;
 
-
-int main()
-{
-	cout << subtract(5, 2) << endl; // 3
-	cout << subtract(-4.2, 23) << endl; // -27.2
-
-	cout << divide(10, 8) << endl; // 1.25
-	cout << divide(100, 20) << endl; // 5
-
-
-/* ---------------------------------------------------------- */
-
-	//Implement biggest and smallest functions for three input values.
-           // inputs: three decimal values
-          // returns: the largest (or smallest) decimal value
-	cout << biggest(10, 2.2, 7) << endl;  // 10
-	cout << biggest(4.9, 5, 5) << endl; //5
-	cout << biggest(8, 10, 20.3) << endl; //20.3
-
-	cout << smallest(6, 20, 3) << endl; //3
-	cout << smallest(3.14, 1.17, 8.3) << endl;  //1.17
-
-
-/* ---------------------------------------------------------- */
-
-
-	//Implement isEven, isOdd boolean functions
-           // inputs: an integer value
-          // returns: true if value is even for isEven (or odd for isOdd), false otherwise
-	int n;
-	cout << "Enter a number: " << endl;
-	cin >> n;
-	
-	if (isEven(n))
-	{
-		cout << n << " is even." << endl;
-	}
-	
-	if (isOdd(n))
-	{
-		cout << n << " is odd." << endl;
-	}
-
-/* ---------------------------------------------------------- */
-
-	//Create a function that sums the numbers between the given range, and should also *print* the number of values being added up
-           // inputs: two integer values
-          // returns: the sum of all integers from the first to the second value
-	int total1 = sumRange(8, 20);  //this should be 8+9+10+...+20 = ?  
-	int total2 = sumRange(3, 13);
-
-	cout << "There are 13 values from 8 to 20. The sum of this range is " << total1 << endl;
-	cout << "There are 11 values from 3 to 13. The sum of this range is " << total2 << endl;
-
-/* ---------------------------------------------------------- */
-
-    //Create a function that calculates power (x raised to the y) WITHOUT using the built-in pow function
-           // inputs: two integer values
-          // returns: x^y (hint: x^2 = x*x)
-	cout << "4 raised to the power of 5 is " << power(4, 5) << endl;    // 1024
-	cout << "1 raised to the power of 365 is " << power(1, 365) << endl;  // 1
-
-/* ---------------------------------------------------------- */
-
-	//////////////////////////////////////////////////////
-	// Next, write a random number generator that will generate random integer numbers between any two input values
-	// Hint: Remember that you will need to call srand() and rand() functions in your function to do this
-	int random1 = randomNumber(11, 99); // this should be a random number between 11 and 99
-	int random2 = randomNumber(-5, 19); // random number between -5 and 19
-
-	cout << "Here is a random value between 11 and 99:\t" << random1 << endl;
-	cout << "Here is a random value between -5 and 19:\t" << random2 << endl;
-
-/* ---------------------------------------------------------- */
-
-	// Okay, now something more interesting!
-    // Prime numbers cannot be evenly divided by any number smaller than them except 1
-	// Write a boolean function that checks if an input number is prime or not
-    // hint: computers don't mind doing lots of divisions
-           // inputs: an integer value
-          // returns: true if value is a prime number, false otherwise
-
-	//if (isPrime(n))
-	//{
-	//	cout << n << " is prime." << endl;
-	//}
-
-/* ---------------------------------------------------------- */
-
-    // Write a function that *counts* all the prime numbers from 1 up to a certain number
-	// hint: Functions may call other functions, even other functions that *you* have written.
-           // inputs: an integer value
-          // returns: nothing (prints to console)	
-
-	//countPrimes(12); //Should print: "there are 5 prime numbers up to 12"     (the prime numbers are 2,3,5,7,11)
-	//countPrimes(22); //Should print: "there are 8 prime numbers up to 22"     (the prime numbers are 2,3,5,7,11,13,17,19)
+#include "functions.h"  // Students will create this file
 
 
 
-	return 0;
+// Helper to compare doubles within small tolerance
+bool almostEqual(double a, double b, double tolerance = 0.0001) {
+    return fabs(a - b) < tolerance;
+}
+
+void runTests() {
+    cout << "Running Function Tests...\n";
+
+    // 1. Test Subtract
+    if (almostEqual(subtract(5.0, 2.0), 3.0) &&
+        almostEqual(subtract(-4.2, 23.0), -27.2)) {
+        cout << "✅ Subtract: Passed\n";
+    } else {
+        cout << "❌ Subtract: Failed — Check your subtraction logic.\n";
+    }
+
+    // 2. Test Divide
+    if (almostEqual(divide(10.0, 5.0), 2.0) &&
+        almostEqual(divide(100.0, 20.0), 5.0)) {
+        cout << "✅ Divide: Passed\n";
+    } else {
+        cout << "❌ Divide: Failed — Check your division logic.\n";
+    }
+
+    // 3. Test Biggest
+    if (almostEqual(biggest(5.0, 10.0, 7.0), 10.0) &&
+        almostEqual(biggest(4.9, 5.0, 5.0), 5.0)) {
+        cout << "✅ Biggest: Passed\n";
+    } else {
+        cout << "❌ Biggest: Failed — Check your logic for finding the largest value.\n";
+    }
+
+    // 4. Test Smallest
+    if (almostEqual(smallest(6.0, 20.0, 3.0), 3.0) &&
+        almostEqual(smallest(3.14, 1.17, 8.3), 1.17)) {
+        cout << "✅ Smallest: Passed\n";
+    } else {
+        cout << "❌ Smallest: Failed — Check your logic for finding the smallest value.\n";
+    }
+
+    // 5. Test Even/Odd
+    if (isEven(4) && !isEven(7) && isOdd(7) && !isOdd(4)) {
+        cout << "✅ Even/Odd: Passed\n";
+    } else {
+        cout << "❌ Even/Odd: Failed — Check your logic for even and odd numbers.\n";
+    }
+
+    // 6. Test SumRange
+    int sum1 = sumRange(8, 20);  // should be 182
+    int sum2 = sumRange(3, 13);  // should be 88
+    if (sum1 == 182 && sum2 == 88) {
+        cout << "✅ SumRange: Passed\n";
+    } else {
+        cout << "❌ SumRange: Failed — Check range summing logic (inclusive) or off-by-one errors.\n";
+    }
+
+    // 7. Test Power
+    if (power(4, 5) == 1024 && power(1, 365) == 1) {
+        cout << "✅ Power: Passed\n";
+    } else {
+        cout << "❌ Power: Failed — Check your loop logic for repeated multiplication.\n";
+    }
+
+    // 8. Test Random Number (this one is tricky to unit test)
+    int randNum = randomNumber(1, 100);
+    if (randNum >= 1 && randNum <= 100) {
+        cout << "✅ RandomNumber: Passed (Range check only)\n";
+    } else {
+        cout << "❌ RandomNumber: Failed — Make sure your random numbers are in the correct range.\n";
+    }
+
+    // 9. Test isPrime
+    if (isPrime(2) && isPrime(7) && !isPrime(8) && !isPrime(1)) {
+        cout << "✅ IsPrime: Passed\n";
+    } else {
+        cout << "❌ IsPrime: Failed — Check logic for identifying prime numbers.\n";
+    }
+
+    // 10. Test countPrimes (output-based)
+    cout << "\nManual check required for countPrimes — expected output:\n";
+    cout << "There are 5 prime numbers up to 12.\n";
+    cout << "There are 8 prime numbers up to 22.\n";
+    countPrimes(12);
+    countPrimes(22);
+
+    cout << "\n✅ Finished Running Tests\n";
+}
+
+int main() {
+    srand(time(0));  // Seed random number generator once in main()
+
+    runTests();
+
+    return 0;
 }

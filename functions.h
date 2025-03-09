@@ -1,12 +1,12 @@
-float subtract(float a, float b){
+double subtract(double a, double b){
     return (a - b);
 }
 
-float divide(float a, float b){
+double divide(double a, double b){
     return (a/b);
 }
 
-float biggest(float a, float b, float c){
+double biggest(double a, double b, double c){
     if (a >= b && a >= c){
         return a;
     }
@@ -20,7 +20,7 @@ float biggest(float a, float b, float c){
     return 0;
 }
 
-float smallest(float a, float b, float c){
+double smallest(double a, double b, double c){
     if (a <= b && a <= c){
         return a;
     }
@@ -66,7 +66,6 @@ int power(int a, int b){
 }
 
 int randomNumber(int a, int b){
-    srand(time(0));
     int range = b - a;
     int result = rand() % range;
     result += a;
@@ -74,5 +73,23 @@ int randomNumber(int a, int b){
 }
 
 bool isPrime(int a){
-    
+    if (a == 1) {
+        return false;
+    }
+    for (int i = 2; i < a; i++){
+        if (a % i == 0 && a != i){
+            return false;
+        }
+    }
+    return true;
+}
+
+void countPrimes(int a){
+    std::cout << "The primes from 1 to " << a << " are: ";
+    for(int i = 2; i <= a; i++){
+        if (isPrime(i)){
+            std::cout << i << " ";
+        }
+    }
+    std::cout << std::endl;
 }
