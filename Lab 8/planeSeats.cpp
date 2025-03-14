@@ -24,6 +24,7 @@ using namespace std;
 }*/
 
 // Array implementation
+/*
 void seats(int a, int b)
 {   
     string plane[a][b];
@@ -36,7 +37,19 @@ void seats(int a, int b)
         cout << endl;
     }
 }
+    */
+// Neither
+
+void seats(int a, int b){
+    for(int i = 1; i <= a; i++){
+        for(int j = 0; j < b; j++){
+            cout << i << char(65 + j) << " ";
+        }
+
+        cout << endl;
+    }
+}
 
 int main(){
-    seats(14, 5);
+    seats(17, 5);
 }
