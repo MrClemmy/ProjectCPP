@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <array>
 
 using namespace std;
 
@@ -13,7 +14,7 @@ int main(){
     }
 
     vector<string> names(5);
-    vector<int> times(5);
+    int times[5];
 
     for (int i = 0; i < 5; i++){
         racers >> names[i];
