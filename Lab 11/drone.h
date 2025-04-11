@@ -11,7 +11,7 @@ class drone{
         }
 
         void getPosition(){
-            cout << cur_loc[0] << cur_loc[1] << cur_loc[2];
+            cout << "(" << cur_loc[0] << ", " << cur_loc[1] << ", " << cur_loc[2] << ")" << endl;
         }
 
     private:
