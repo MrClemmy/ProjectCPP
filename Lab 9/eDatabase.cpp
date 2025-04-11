@@ -20,6 +20,9 @@ int main(){
     while (getline(data, unused))
         ++numLines;
 
+    data.clear();
+    data.seekg(0);
+
     vector<string> names(numLines);
     vector<string> titles(numLines);
     vector<int> rev1(numLines);
